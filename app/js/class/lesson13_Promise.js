@@ -28,7 +28,7 @@
 
 {
   let ajax = function() {
-    console.log('执行3');
+    console.log('执行1');
     return new Promise(function(resolve, reject) {
       setTimeout(function() {
         resolve();
@@ -39,6 +39,7 @@
   ajax()
     .then(function() {
       return new Promise(function(resolve, reject) {
+        console.log('执行2');
         setTimeout(function() {
           resolve();
         }, 2000);
@@ -74,6 +75,7 @@
       console.log('log', 3);
     })
     .catch(function(err) {
+      // 执行reject时的回调，只有调用reject才会执行！
       console.log('catch', err);
     });
 }
