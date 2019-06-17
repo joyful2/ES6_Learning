@@ -9,7 +9,9 @@ import $ from 'jquery';
 const copyProperties = function(target, source) {
   for (let key of Reflect.ownKeys(source)) {
     if (key !== 'constructor' && key !== 'prototype' && key !== 'name') {
+      // 获取该key的属性描述对象
       let desc = Object.getOwnPropertyDescriptor(source, key);
+      // 定义对象的属性
       Object.defineProperty(target, key, desc);
     }
   }
