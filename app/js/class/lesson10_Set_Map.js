@@ -7,7 +7,7 @@
 }
 
 {
-  let arr = [1, 2, 3, 4, 5];
+  let arr = [1, 2, 3, 4, 5,4,5];
   let list = new Set(arr);
 
   console.log("size", list.size);
