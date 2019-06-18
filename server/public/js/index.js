@@ -9808,6 +9808,7 @@
 	        }, function () {
 	          setTimeout(function () {
 	            self.updateState();
+	            // 注意这里的写法，把promise封装多处都可复用
 	            self.getOmit(self.issue).then(function (res) {});
 	            self.getOpenCode(self.issue).then(function (res) {});
 	          }, 500);
@@ -9824,6 +9825,7 @@
 	    key: 'initEvent',
 	    value: function initEvent() {
 	      var self = this;
+	      // 注意bind(this)的用法和意义
 	      (0, _jquery2.default)('#plays').on('click', 'li', self.changePlayNav.bind(self));
 	      (0, _jquery2.default)('.boll-list').on('click', '.btn-boll', self.toggleCodeActive.bind(self));
 	      (0, _jquery2.default)('#confirm_sel_code').on('click', self.addCode.bind(self));
@@ -20400,6 +20402,7 @@
 	          r.push('<em>' + s + '</em>\u79D2');
 	        }
 	        self.last_time = r.join('');
+	        // todo: call()接口了解
 	        update.call(self, r.join(''));
 	        setTimeout(function () {
 	          self.countdown(end, update, handle);
