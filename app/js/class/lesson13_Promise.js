@@ -67,6 +67,7 @@
       console.log('log', 6);
     })
     .catch(function(err) {
+      // 当且仅当reject调用时执行
       console.log('catch', err);
     });
 
