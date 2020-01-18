@@ -3,6 +3,7 @@ var express = require("express");
 var mockjs = require("mockjs");
 var router = express.Router();
 /* GET home page. */
+
 router.get("/", function(req, res, next) {
   res.render("index", {
     title: "Express"
@@ -35,6 +36,7 @@ var makeIssue = function() {
     end_time = end_date.getTime();
     cur_issue = [
       end_date.getFullYear(),
+
       ("0" + (end_date.getMonth() + 1)).slice(-2),
       ("0" + end_date.getDate()).slice(-2),
       ("0" + h).slice(-2)

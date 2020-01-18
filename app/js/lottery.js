@@ -5,17 +5,20 @@ import Calculate from "./lottery/calculate.js";
 import Interface from "./lottery/interface.js";
 import $ from "jquery";
 
-// 深度拷贝
+// 深层拷贝
 const copyProperties = function(target, source) {
   for (let key of Reflect.ownKeys(source)) {
     if (key !== "constructor" && key !== "prototype" && key !== "name") {
+      // 获取该key的属性描述对象
       let desc = Object.getOwnPropertyDescriptor(source, key);
+      // 定义对象的属性
       Object.defineProperty(target, key, desc);
     }
   }
 };
 
 // 多重继承为一个综合对象
+
 const mix = function(...mixins) {
   class Mix {}
   for (let mixin of mixins) {
@@ -33,12 +36,14 @@ class Lottery extends mix(Base, Calculate, Interface, Timer) {
     this.cname = cname;
     this.issue = issue;
     this.state = state;
+
     this.el = "";
     this.omit = new Map();
     this.open_code = new Set();
     this.open_code_list = new Set();
     this.play_list = new Map();
     this.number = new Set();
+
     this.issue_el = "#curr_issue";
     this.countdown_el = "#countdown";
     this.state_el = ".state_el";
@@ -70,6 +75,8 @@ class Lottery extends mix(Base, Calculate, Interface, Timer) {
         function() {
           setTimeout(function() {
             self.updateState();
+
+            // 注意这里的写法，把promise封装多处都可复用
             self.getOmit(self.issue).then(function(res) {});
             self.getOpenCode(self.issue).then(function(res) {});
           }, 500);
@@ -84,7 +91,8 @@ class Lottery extends mix(Base, Calculate, Interface, Timer) {
    */
   initEvent() {
     let self = this;
-    // bind(this)的妙用
+
+    // 注意bind(this)的用法和意义
     $("#plays").on("click", "li", self.changePlayNav.bind(self));
     $(".boll-list").on("click", ".btn-boll", self.toggleCodeActive.bind(self));
     $("#confirm_sel_code").on("click", self.addCode.bind(self));

@@ -48,15 +48,6 @@
 }
 
 {
-  function f(){
-    return [1,2,3,4,5]
-  }
-  let a,b,c;
-  [a,,...b]=f();
-  console.log(a,b);
-}
-
-{
   let o={p:42,q:true};
   let {p,q}=o;
   console.log(p,q);
@@ -78,3 +69,5 @@
   let {title:esTitle,test:[{title:cnTitle}]}=metaData;
   console.log(esTitle,cnTitle);
 }
+
+ 

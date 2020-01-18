@@ -4,15 +4,18 @@
   // genertaor基本定义: genrator是一种异步解决方案， 通过next,yield控制异步（返回Iterator），比Promise更高级。
   let tell = function*() {
     console.log(1);
-    yield "a";
+    yield 'a';
     console.log(2);
-    yield "b";
+    yield 'b';
     console.log(3);
-    return "c";
+    return 'c';
     console.log(4);
   };
 
   let k = tell();
+  for (let val of k) {
+    console.log('val:', val);
+  }
   // iterator
   console.log(111, k.next());
   console.log(222, k.next());
@@ -31,7 +34,7 @@
   };
 
   for (let value of obj) {
-    console.log("value", value);
+    console.log('value', value);
   }
 }
 
@@ -39,9 +42,9 @@
   // 使用generator函数处理状态机：
   let state = function*() {
     while (1) {
-      yield "A";
-      yield "B";
-      yield "C";
+      yield 'A';
+      yield 'B';
+      yield 'C';
     }
   };
   let status = state();
@@ -56,9 +59,9 @@
   // async await就是genrator函数的语法糖，实质上是一样的
   let state = async function() {
     while (1) {
-      await "A";
-      await "B";
-      await "C";
+      await 'A';
+      await 'B';
+      await 'C';
     }
   };
   let status = state();
@@ -84,11 +87,11 @@
   };
   // 如下的count没有使用全局变量：因为全局变量会1.污染作用域 2.很容易被人修改
   let star = residue(5);
-  const btn = document.creatElement("button");
-  btn.id = "start";
-  btn.textContent = "抽奖";
-  document.getElementById("start").addEventListener(
-    "click",
+  const btn = document.creatElement('button');
+  btn.id = 'start';
+  btn.textContent = '抽奖';
+  document.getElementById('start').addEventListener(
+    'click',
     function() {
       star.next();
     },
@@ -109,7 +112,8 @@
   let Pull = function() {
     let generator = ajax();
     let step = generator.next();
-    // 为什么这里要加value而不是step.then?
+    console.log('step:', step);
+    //  这里是step.value.then而不是step.then！
     step.value.then(function(data) {
       if (data.Code !== 0) {
         setTimeout(() => {
@@ -121,4 +125,5 @@
       }
     });
   };
+  Pull();
 }

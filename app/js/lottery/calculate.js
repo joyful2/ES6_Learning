@@ -1,7 +1,7 @@
 class Calculate {
   /**
    * [computeCount 计算注数]
-   * @param  {number} active    [当前选中的号码]
+   * @param  {number} active    [当前选中的号码个数]
    * @param  {string} play_name [当前的玩法标识]
    * @return {number}           [注数]
    */
